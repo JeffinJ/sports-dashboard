@@ -4,13 +4,14 @@ import React from 'react';
 export default function DashboardLayout() {
     return (
         <Stack screenOptions={{
-            headerStyle:{},
+            headerStyle:{
+            },
             // headerTintColor:""
         }}>
             <Stack.Screen
                 name="index"
                 options={{
-                    title: 'Dashboard',
+                    title: 'Gemini Dashboard',
                     headerShown: true
                 }}
             />

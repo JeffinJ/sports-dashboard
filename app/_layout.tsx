@@ -1,6 +1,7 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { Slot, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 import "./../global.css";
@@ -13,18 +14,47 @@ export default function RootLayout() {
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
+  if (process.env.EXPO_OS === 'web') {
+    const client = new ApolloClient({
+      uri: 'http://localhost:3000/graphql',
+      cache: new InMemoryCache(),
+    });
+    return (
+      <ApolloProvider client={client}>
+        <Slot />
+      </ApolloProvider>
+    );
+  }
+
+  const client = new ApolloClient({
+    uri: 'http://192.168.178.25:3000/graphql',
+    cache: new InMemoryCache(),
+  });
+
   if (!loaded) {
-    // Async font loading only occurs in development.
     return null;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'light' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="dashboard" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <ApolloProvider client={client}>
+      <ThemeProvider value={colorScheme === 'light' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{
+              title: 'Gemini Dashboard',
+              headerShown: true,
+              headerStyle: {
+                backgroundColor: colorScheme === 'light' ? '#fff' : '#0C1522',
+              },
+              headerTintColor: colorScheme === 'light' ? '#000' : '#fff',
+            }}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </ApolloProvider>
+
   );
 }

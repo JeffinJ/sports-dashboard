@@ -1,11 +1,11 @@
 import DashboardContainer from "@/components/dashboard/dashboard-container";
-import { SafeAreaView } from "react-native";
+import { View } from "react-native";
 
 function DashboardPage() {
     return (
-        <SafeAreaView className=" bg-white">
+        <View className="w-full ">
             <DashboardContainer />
-        </SafeAreaView >
+        </View >
     )
 }
 
