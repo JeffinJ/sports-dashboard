@@ -1,4 +1,4 @@
-# Welcome to your Expo app 👋
+# Gemini Sports Dashboard Starter
 
 Sports analytics dashboard app compatable with Web
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
