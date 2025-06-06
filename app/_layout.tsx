@@ -16,7 +16,7 @@ export default function RootLayout() {
 
   if (process.env.EXPO_OS === 'web') {
     const client = new ApolloClient({
-      uri: 'http://localhost:3000/graphql',
+      uri: process.env.BACKEND_URL,
       cache: new InMemoryCache(),
     });
     return (
@@ -27,7 +27,7 @@ export default function RootLayout() {
   }
 
   const client = new ApolloClient({
-    uri: 'http://192.168.178.25:3000/graphql',
+    uri: process.env.BACKEND_URL,
     cache: new InMemoryCache(),
   });
 

@@ -21,10 +21,21 @@ export default function TeamBarChartContainer() {
         })) || [];
     }, [data]);
 
-    console.log(teamPerformance);
-    if (loading) return <Loading message="Loading team performance data..." className="flex-1 items-center justify-center" />;
-    if (error) return <Error className="flex-1 items-center justify-center" />;
-    if (!data || !data.teamPerformance) return <View className="flex-1 items-center justify-center"><Text>No data available</Text></View>;
+    if (loading)
+        return <Loading
+            message="Loading team performance data..."
+            className="flex-1 items-center justify-center" />;
+
+    if (error)
+        return <Error className="flex-1 items-center justify-center" />;
+
+    if (!data || !data.teamPerformance) {
+        return (
+            <View className="flex-1 items-center justify-center">
+                <Text>No data available</Text>
+            </View>
+        );
+    }
 
     return (
         <View className="flex-1">

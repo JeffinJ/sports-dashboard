@@ -1,6 +1,15 @@
 # Welcome to your Expo app 👋
 
+Sports analytics dashboard app compatable with Web
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+
+## Core implimentations
+
+- Used ShadCN UI components using the `"use dom"` directive
+- Apollo server for data fetching.
+- Integrated nativewind library.
+
+![alt text](1000087610.jpg)
 
 ## Get started
 
@@ -9,6 +18,14 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
    npm install
    ```
+
+2. Environment
+
+`.env`
+
+```env
+   BACKEND_URL=
+```
 
 2. Start the app
 
